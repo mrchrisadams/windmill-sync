@@ -15,6 +15,14 @@ jobs:
   sync:
     environment: windmill
     runs-on: "ubuntu-latest"
+
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push the
+      # added or changed files to the repository.
+      # for more see below:
+      # https://github.com/stefanzweifel/git-auto-commit-action#usage
+      contents: write
+
     steps:
       - name: Checkout
         uses: actions/checkout@v3
