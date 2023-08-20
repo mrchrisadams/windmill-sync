@@ -1,15 +1,15 @@
-name: 'Push main to windmill workspace'
+name: "Push main to windmill workspace"
 on:
   workflow_dispatch:
   push:
     branches:
-      - 'main'
+      - "main"
   # schedule:
   #  - cron:  '0 * * * *'
 
 env:
   WMILL_URL: https://app.windmill.dev/
-  WMILL_WORKSPACE: github-sync-example
+  WMILL_WORKSPACE: personal-mrchrisadams
 
 jobs:
   sync:
@@ -30,5 +30,5 @@ jobs:
           deno run --unstable -A  https://deno.land/x/wmill@v1.104.0/main.ts workspace add __automation ${{ env.WMILL_WORKSPACE }} ${{ env.WMILL_URL }} --token ${{ secrets.WMILL_TOKEN }}
           deno run --unstable -A  https://deno.land/x/wmill@v1.104.0/main.ts sync push --yes --fail-conflicts
 
-      # autocommit the new .wmill state after the push                                                             
+      # autocommit the new .wmill state after the push
       - uses: stefanzweifel/git-auto-commit-action@v4
